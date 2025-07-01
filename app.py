@@ -41,8 +41,8 @@ bcrypt = Bcrypt(app)
 # Cloudinary config
 cloudinary.config(
     cloud_name='dw1eccnl7',
-    api_key='482771498478777',
-    api_secret='c176-rGWTvKkyEjcfJeF9zxzqvQ'
+    api_key='',
+    api_secret=''
 )
 
 
@@ -53,13 +53,13 @@ complaints=[]
 
 # --------------------- Roboflow Model Import --------------------------------
 
-rf = Roboflow(api_key="ZYZiqRfxocCQlUyr6YW9")
+rf = Roboflow(api_key="")
 project = rf.workspace().project("pothole-detection-i00zy")
 model = project.version(2).model
 
 # --------------------- MongoDB Connections --------------------------------
 
-client = MongoClient('mongodb+srv://yash:yash@cluster0.jgrqbet.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+client = MongoClient('')
 db = client['pothole_app']
 users_collection = db['users']
 resolved_complaints_collection = db['resolved_complaints']
