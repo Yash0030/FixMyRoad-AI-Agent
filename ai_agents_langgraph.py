@@ -16,20 +16,20 @@ from typing import TypedDict
 
 load_dotenv()
 
-# MongoDB setup
-client = MongoClient('mongodb+srv://yash:yash@cluster0.jgrqbet.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+
+client = MongoClient('')
 db = client['pothole_app']
-# --- CONFIG ---
-MONGODB_URI = "mongodb+srv://yash:yash@cluster0.jgrqbet.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+MONGODB_URI = ""
 DB_NAME = "pothole_app"
 COMPLAINT_COLLECTION = "complaints"
 RESOLVED_COLLECTION = "resolved_complaints"
-# Collections
+
 complaints_collection = db["complaints"]
 resolved_complaints_collection = db["resolved_complaints"]
-SENDER_EMAIL = "syash6662@gmail.com"
-APP_PASSWORD = "wzxnbxsxfgqrarje"
-TARGET_EMAIL = "mohitchauhan22334@gmail.com"
+SENDER_EMAIL = ""
+APP_PASSWORD = ""
+TARGET_EMAIL = ""
 
 complaints_collection = db[COMPLAINT_COLLECTION]
 resolved_collection = db[RESOLVED_COLLECTION]
@@ -47,8 +47,6 @@ def decode_mime_words(s):
         for part, enc in decoded_parts
     )
     
-    
-# Format email content
 def prepare_email_body(complaint, template):
     return template.format(
         name=complaint['user_email'].split('@')[0],
@@ -76,20 +74,19 @@ def check_reply_and_resolve(_: str = "", max_emails: int = 10) -> str:
         mail.login(SENDER_EMAIL, APP_PASSWORD)
         mail.select("inbox")
 
-        # Search for unread emails
+     
         status, data = mail.search(None, 'UNSEEN')
         email_ids = data[0].split()
 
         if not email_ids:
             return "📭 No new unread emails."
 
-        # Process only the most recent N unread emails
         email_ids = email_ids[-max_emails:]
 
         resolution_keywords = ["resolved", "done", "fixed", "completed", "solved"]
         resolved_count = 0
 
-        for eid in reversed(email_ids):  # Start from most recent
+        for eid in reversed(email_ids): 
             _, msg_data = mail.fetch(eid, '(RFC822)')
             raw_email = msg_data[0][1]
             msg = email.message_from_bytes(raw_email)
@@ -97,7 +94,7 @@ def check_reply_and_resolve(_: str = "", max_emails: int = 10) -> str:
             subject = decode_mime_words(msg.get("subject", ""))
             from_email = msg.get("from", "")
 
-            # Get the email body content
+
             body = ""
             if msg.is_multipart():
                 for part in msg.walk():
@@ -108,7 +105,7 @@ def check_reply_and_resolve(_: str = "", max_emails: int = 10) -> str:
                 charset = msg.get_content_charset() or "utf-8"
                 body = msg.get_payload(decode=True).decode(charset, errors="replace")
 
-            # Check for resolution keywords
+        
             if any(keyword in body.lower() for keyword in resolution_keywords):
                 match = re.search(r"Complaint\s+#([a-f0-9]{24})", subject)
                 if match:
@@ -121,21 +118,19 @@ def check_reply_and_resolve(_: str = "", max_emails: int = 10) -> str:
                         resolved_complaints_collection.insert_one(complaint)
                         complaints_collection.delete_one({"_id": ObjectId(complaint_id)})
                         resolved_count += 1
-                        print(f"✅ Complaint {complaint_id} marked as resolved.")
+                        print(f" Complaint {complaint_id} marked as resolved.")
                     else:
-                        print(f"⚠️ Complaint ID {complaint_id} not found in DB.")
+                        print(f" Complaint ID {complaint_id} not found in DB.")
                 else:
-                    print(f"⚠️ No complaint ID found in subject: {subject}")
+                    print(f" No complaint ID found in subject: {subject}")
             else:
-                print(f"ℹ️ No resolution keywords in email from {from_email}")
+                print(f" No resolution keywords in email from {from_email}")
 
-        return f"✅ {resolved_count} complaints resolved from email replies."
+        return f" {resolved_count} complaints resolved from email replies."
 
     except Exception as e:
-        return f"❌ Email check failed: {e}"
+        return f" Email check failed: {e}"
 
-
-# AGENT
 def build_langgraph_agent():
     llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 
@@ -183,6 +178,5 @@ def build_langgraph_agent():
 
     return graph.compile()
 
-# Export
 agent_executor = build_langgraph_agent()
 
