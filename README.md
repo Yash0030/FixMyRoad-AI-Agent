@@ -1,4 +1,4 @@
-# 🛣 FixMyRoad - Pothole Detection & Reporting System With Agentuc AI🚧
+# 🛣 FixMyRoad - Pothole Detection & Reporting System Using Agentic AI🚧
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.8+-green.svg)
@@ -27,7 +27,7 @@ FixMyRoad is an intelligent pothole detection and reporting system that uses mac
 - *Data Processing*: NumPy, scikit-learn
 - *Frontend*: HTML/CSS/JavaScript, Bootstrap
 - *Visualization*: Interactive maps and data visualization
-- "LangGraph": For building simple AI agents to handle manual Admin work
+- *LangGraph*: For building simple AI agents to handle manual Admin work
 
 ## 🚀 Getting Started
 
@@ -82,7 +82,7 @@ FixMyRoad is an intelligent pothole detection and reporting system that uses mac
 ### For Administrators
 
 1. *Login*: Use admin credentials to access the dashboard
-![AI agent workflow](https://github.com/user-attachments/assets/3d56cef6-962e-468a-a661-01617ef50715)
+2. ![AI agent workflow](https://github.com/user-attachments/assets/3d56cef6-962e-468a-a661-01617ef50715)
 
 
 ## 📊 How It Works
