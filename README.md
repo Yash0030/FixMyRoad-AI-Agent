@@ -1,4 +1,4 @@
-# 🛣 FixMyRoad - Pothole Detection & Reporting System 🚧
+# 🛣 FixMyRoad - Pothole Detection & Reporting System With Agentuc AI🚧
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.8+-green.svg)
@@ -15,7 +15,7 @@ FixMyRoad is an intelligent pothole detection and reporting system that uses mac
 - *📊 Smart Prioritization Algorithm*: Ranks issues based on damage severity, community votes, and other factors
 - *🗺 Interactive Mapping*: Displays verified potholes on an interactive map for easy location tracking
 - *🔄 Community Engagement*: Allows users to upvote/downvote issues to improve prioritization
-- *👨‍💻 Admin Dashboard*: Provides authorities with insights and tools to manage reported issues
+- *👨‍💻 Admin Dashboard*: Provides AI Agents tools to manage reported issues
 - *🌉 Bridge Health Prediction*: Estimates bridge lifespan based on various structural parameters
 
 ## 🛠 Technology Stack
@@ -27,6 +27,7 @@ FixMyRoad is an intelligent pothole detection and reporting system that uses mac
 - *Data Processing*: NumPy, scikit-learn
 - *Frontend*: HTML/CSS/JavaScript, Bootstrap
 - *Visualization*: Interactive maps and data visualization
+- "LangGraph": For building simple AI agents to handle manual Admin work
 
 ## 🚀 Getting Started
 
@@ -81,9 +82,8 @@ FixMyRoad is an intelligent pothole detection and reporting system that uses mac
 ### For Administrators
 
 1. *Login*: Use admin credentials to access the dashboard
-2. *Manage Reports*: View, approve, reject, or mark issues as resolved
-3. *Prioritize Repairs*: Use the AI-generated priority scores to plan maintenance
-4. *Bridge Analysis*: Predict bridge lifespans based on structural parameters
+![AI agent workflow](https://github.com/user-attachments/assets/3d56cef6-962e-468a-a661-01617ef50715)
+
 
 ## 📊 How It Works
 
